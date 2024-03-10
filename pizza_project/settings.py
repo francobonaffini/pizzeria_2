@@ -78,7 +78,7 @@ ASGI_APPLICATION = 'pizza_project.asgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         # Replace this value with your local database's connection string.
-        default='postgresql://postgres:postgres@localhost:5432/mysite',
+        default='postgres://pizzeria_django_render_user:VpeLAIgqyQQfoMBdkpdddbrwqEeArTRi@dpg-cnmbdjqcn0vc738dghng-a/pizzeria_django_render',
         conn_max_age=600
     )
 }
