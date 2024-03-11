@@ -5,7 +5,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -68,20 +67,29 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'pizza_project.wsgi.application'
-ASGI_APPLICATION = 'pizza_project.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 # Database documentation https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.config(
-        # Replace this value with your local database's connection string.
-        default='postgres://pizzeria_django_render_user:VpeLAIgqyQQfoMBdkpdddbrwqEeArTRi@dpg-cnmbdjqcn0vc738dghng-a/pizzeria_django_render',
-        conn_max_age=600
-    )
-}
+if DEBUG :
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',   
+            'NAME': BASE_DIR / 'db.sqlite3',         
+        }
+    }
+else:
+
+        DATABASES = {
+        'default': dj_database_url.config(
+            # Replace this value with your local database's connection string.
+            default='postgres://pizzeria_django_render_user:VpeLAIgqyQQfoMBdkpdddbrwqEeArTRi@dpg-cnmbdjqcn0vc738dghng-a/pizzeria_django_render',
+            conn_max_age=600
+        )
+    }
+
 # database_url = os.environ.get("DATABASE_URL")
 
 # DATABASES['default'] = dj_database_url.parse(database_url)    
@@ -116,7 +124,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
@@ -142,7 +149,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'pizzas','static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'pizzas','media')
 
-CORS_ALLOWED_ORIGINS = ['http://localhost','http://192.168.1.33:3000','http://192.168.1.41:5174']
-
-SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
+CORS_ALLOWED_ORIGINS = []
 
